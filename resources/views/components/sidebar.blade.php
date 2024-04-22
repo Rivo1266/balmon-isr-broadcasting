@@ -25,9 +25,11 @@
         <div class="navbar-nav w-100">
             <a href="/home" class="nav-item nav-link {{ Request::is('home*') ? 'active' : '' }}"><i
                     class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="/menu/data-users"
-                class="nav-item nav-link {{ Request::is('menu/data-users*') ? 'active' : '' }}"><i
-                    class="fa fa-users me-2"></i>Data Users</a>
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'pimpinan')
+                <a href="/menu/data-users"
+                    class="nav-item nav-link {{ Request::is('menu/data-users*') ? 'active' : '' }}"><i
+                        class="fa fa-users me-2"></i>Data Users</a>
+            @endif
             <a href="/menu/data-broadcastings"
                 class="nav-item nav-link {{ Request::is('menu/data-broadcastings*') ? 'active' : '' }}"><i
                     class="fa fa-tower-broadcast me-2"></i>Data Broadcasting</a>

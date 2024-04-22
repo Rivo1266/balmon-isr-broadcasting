@@ -19,7 +19,10 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Roles</th>
-                            <th scope="col">Action</th>
+                            @if (auth()->user()->role == 'pimpinan')
+                            @elseif (auth()->user()->role == 'admin')
+                                <th scope="col">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -39,17 +42,23 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i
-                                            class="fas fa-edit"></i> Edit</a>
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                        <button class="btn btn-danger btn-sm show_confirm" type="submit"><i
-                                                class="fa fa-trash"></i>
-                                            Hapus</button>
-                                    </form>
-                                </td>
+                                @if (auth()->user()->role == 'pimpinan')
+                                @elseif (auth()->user()->role == 'admin')
+                                    <td>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm"><i
+                                                class="fas fa-edit"></i> Edit</a>
+                                        @if ($user->role == 'admin')
+                                        @else
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                                <input type="hidden" name="_method" value="DELETE" />
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                <button class="btn btn-danger btn-sm show_confirm" type="submit"><i
+                                                        class="fa fa-trash"></i>
+                                                    Hapus</button>
+                                            </form>
+                                        @endif
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

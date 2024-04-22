@@ -26,17 +26,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="erp_pwr_dbm" class="form-label">ERP_PWR_DBM</label>
-                            <input type="text" name="erp_pwr_dbm" class="form-control" id="erp_pwr_dbm"
+                            <input type="number" name="erp_pwr_dbm" class="form-control" id="erp_pwr_dbm"
                                 value="{{ $broadcasting->erp_pwr_dbm }}">
                         </div>
                         <div class="mb-3">
                             <label for="bwidth" class="form-label">BWIDTH</label>
-                            <input type="text" name="bwidth" class="form-control" id="bwidth"
+                            <input type="number" name="bwidth" class="form-control" id="bwidth"
                                 value="{{ $broadcasting->bwidth }}">
                         </div>
                         <div class="mb-3">
                             <label for="bhp" class="form-label">BHP</label>
-                            <input type="text" name="bhp" class="form-control" id="bhp"
+                            <input type="number" name="bhp" class="form-control" id="bhp"
                                 value="{{ $broadcasting->bhp }}">
                         </div>
                         <div class="mb-3">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="hgt_ant" class="form-label">HGT_ANT</label>
-                            <input type="text" name="hgt_ant" class="form-control" id="hgt_ant"
+                            <input type="number" name="hgt_ant" class="form-control" id="hgt_ant"
                                 value="{{ $broadcasting->hgt_ant }}">
                         </div>
                         <div class="mb-3">
@@ -61,17 +61,17 @@
                         </div>
                         <div class="mb-3">
                             <label for="sid_long" class="form-label">SID_LONG</label>
-                            <input type="text" name="sid_long" class="form-control" id="sid_long"
+                            <input type="number" name="sid_long" class="form-control" id="sid_long"
                                 value="{{ $broadcasting->sid_long }}">
                         </div>
                         <div class="mb-3">
                             <label for="sid_lat" class="form-label">SID_LAT</label>
-                            <input type="text" name="sid_lat" class="form-control" id="sid_lat"
+                            <input type="number" name="sid_lat" class="form-control" id="sid_lat"
                                 value="{{ $broadcasting->sid_lat }}">
                         </div>
                         <div class="mb-3">
                             <label for="mon_query" class="form-label">MON_QUERY</label>
-                            <input type="date" name="sid_lat" class="form-control" id="mon_query"
+                            <input type="date" name="mon_query" class="form-control" id="mon_query"
                                 value="{{ $broadcasting->mon_query }}">
                         </div>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-save me-2"></i>Simpan</button>

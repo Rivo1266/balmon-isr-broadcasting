@@ -6,14 +6,16 @@
 
 @section('content')
     <div class="container-fluid pt-4 px-4">
-        <form id="import" action="{{ route('broadcastings.import') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-3">
-                <label for="import_file" class="form-label">Import File :</label>
-                <input class="form-control" type="file" name="import_file" id="import_file">
-            </div>
-            <button type="submit" class="btn btn-primary mb-3"><i class="fa fa-upload me-2"></i>Import</button>
-        </form>
+        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'operator')
+            <form id="import" action="{{ route('broadcastings.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="import_file" class="form-label">Import File :</label>
+                    <input class="form-control" type="file" name="import_file" id="import_file">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3"><i class="fa fa-upload me-2"></i>Import</button>
+            </form>
+        @endif
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Data Broadcasting</h6>
@@ -34,7 +36,9 @@
                                 <th scope="col">SID_LONG</th>
                                 <th scope="col">SID_LAT</th>
                                 <th scope="col">MON_QUERY</th>
-                                <th scope="col">Action</th>
+                                @if (auth()->user()->role == 'admin' || auth()->user()->role == 'operator')
+                                    <th scope="col">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -52,23 +56,25 @@
                                     <td>{{ $broadcasting->master_plzn_code }}</td>
                                     <td>{{ $broadcasting->sid_long }}</td>
                                     <td>{{ $broadcasting->sid_lat }}</td>
-                                    <td>{{ $broadcasting->mon_query }}</td>               
-                                    <td>
-                                        <div
-                                            class="d-grid
-                                            gap-2 d-md-block text-center">
-                                            <a href="{{ route('broadcastings.edit', $broadcasting->id) }}"
-                                                class="btn btn-warning btn-sm mx-2"><i class="fas fa-edit"></i> Edit</a>
-                                            <form action="{{ route('broadcastings.destroy', $broadcasting->id) }}"
-                                                method="POST">
-                                                <input type="hidden" name="_method" value="DELETE" />
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                                <button class="btn btn-danger btn-sm show_confirm" type="submit"><i
-                                                        class="fa fa-trash"></i>
-                                                    Hapus</button>
-                                            </form>
-                                        </div>
-                                    </td>
+                                    <td>{{ $broadcasting->mon_query }}</td>
+                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'operator')
+                                        <td>
+                                            <div
+                                                class="d-grid
+                                        gap-2 d-md-block text-center">
+                                                <a href="{{ route('broadcastings.edit', $broadcasting->id) }}"
+                                                    class="btn btn-warning btn-sm mx-2"><i class="fas fa-edit"></i> Edit</a>
+                                                <form action="{{ route('broadcastings.destroy', $broadcasting->id) }}"
+                                                    method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE" />
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                                    <button class="btn btn-danger btn-sm show_confirm" type="submit"><i
+                                                            class="fa fa-trash"></i>
+                                                        Hapus</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

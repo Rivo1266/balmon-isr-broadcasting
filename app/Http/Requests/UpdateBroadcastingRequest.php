@@ -24,17 +24,17 @@ class UpdateBroadcastingRequest extends FormRequest
         return [
             'license_id_mon_query' => 'required|string|max:191',
             'clnt_id' => 'required|max:191',
-            'appl_id' => 'nullable|string|max:191',
-            'erp_pwr_dbm' => 'required|string|max:191',
+            'appl_id' => 'nullable|max:191',
+            'erp_pwr_dbm' => 'required|max:191',
             'bwidth' => 'required|max:191',
             'bhp' => 'nullable|max:191',
             'eq_mdl' => 'required|string|max:191',
             'ant_mdl' => 'required|string|max:191',
-            'hgt_ant' => 'required|string|max:191',
-            'master_plzn_cod' => 'required|max:191',
-            'sid_long' => 'required|string|max:191',
-            'sid_lat' => 'required|string|max:191',
-            'mon_query' => 'required|string|max:191',
+            'hgt_ant' => 'required|max:191',
+            'master_plzn_code' => 'nullable|string|max:191',
+            'sid_long' => 'required|max:191',
+            'sid_lat' => 'required|max:191',
+            'mon_query' => 'required|max:191',
         ];
     }
 }
